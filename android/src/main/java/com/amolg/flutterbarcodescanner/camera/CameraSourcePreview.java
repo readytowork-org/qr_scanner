@@ -97,7 +97,7 @@ public class CameraSourcePreview extends ViewGroup {
                 if (isPortraitMode()) {
                     // Swap width and height sizes when in portrait, since it will be rotated by
                     // 90 degrees
-                    mOverlay.setCameraInfo(min, max, mCameraSource.getCameraFacing());
+                    mOverlay.setCameraInfo(100, max, mCameraSource.getCameraFacing());
                 } else {
                     mOverlay.setCameraInfo(max, min, mCameraSource.getCameraFacing());
                 }
@@ -164,7 +164,7 @@ public class CameraSourcePreview extends ViewGroup {
 
         // Computes height and width for potentially doing fit width.
         int childWidth = layoutWidth;
-        int childHeight = (int) (((float) layoutWidth / (float) width) * height);
+        int childHeight = (int) ((float) layoutWidth * height / width);
 
         // If height is too tall using fit width, does fit height instead.
         if (childHeight > layoutHeight) {

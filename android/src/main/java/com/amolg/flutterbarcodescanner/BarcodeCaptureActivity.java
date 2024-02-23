@@ -117,9 +117,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
             Log.e("BCActivity:onCreate()", "onCreate: " + e.getLocalizedMessage());
         }
 
-        Button btnBarcodeCaptureCancel = findViewById(R.id.btnBarcodeCaptureCancel);
-        btnBarcodeCaptureCancel.setText(buttonText);
-        btnBarcodeCaptureCancel.setOnClickListener(this);
+
 
         imgViewBarcodeCaptureUseFlash = findViewById(R.id.imgViewBarcodeCaptureUseFlash);
         imgViewBarcodeCaptureUseFlash.setOnClickListener(this);
@@ -411,13 +409,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
                 Toast.makeText(this, "Unable to turn on flash", Toast.LENGTH_SHORT).show();
                 Log.e("BarcodeCaptureActivity", "FlashOnFailure: " + e.getLocalizedMessage());
             }
-        } else if (i == R.id.btnBarcodeCaptureCancel) {
-            Barcode barcode = new Barcode();
-            barcode.rawValue = "-1";
-            barcode.displayValue = "-1";
-            FlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode);
-            finish();
-        } else if (i == R.id.imgViewSwitchCamera) {
+        }  else if (i == R.id.imgViewSwitchCamera) {
             int currentFacing = mCameraSource.getCameraFacing();
             boolean autoFocus = mCameraSource.getFocusMode() != null;
             boolean useFlash = flashStatus == USE_FLASH.ON.ordinal();

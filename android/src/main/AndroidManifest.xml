@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <application
         android:largeHeap="true"
+        android:exported="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name="com.amolg.flutterbarcodescanner.BarcodeCaptureActivity" />
     </application>
