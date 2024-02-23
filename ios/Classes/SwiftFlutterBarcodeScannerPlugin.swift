@@ -111,13 +111,13 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
                                 
                             }
                         } else {
-                            let alert = UIAlertController(title: "Action needed", message: "Please grant camera permission to use barcode scanner", preferredStyle: .alert)
+                            let alert = UIAlertController(title: "米子市フレイル予防アプリ", message: "QRコードを読み取るためにカメラを使用します", preferredStyle: .alert)
                             
-                            alert.addAction(UIAlertAction(title: "Grant", style: .default, handler: { action in
+                            alert.addAction(UIAlertAction(title: "許可", style: .default, handler: { action in
                                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                             }))
                             
-                            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                            alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel))
                             
                             SwiftFlutterBarcodeScannerPlugin.viewController.present(alert, animated: true)
                         }
