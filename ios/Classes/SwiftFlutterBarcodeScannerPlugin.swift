@@ -201,26 +201,26 @@ class BarcodeScannerViewController: UIViewController {
         return flashButton
     }()
     
-    /// Create and return switch camera button
-    private lazy var switchCameraButton : UIButton! = {
-        let button = UIButton()
+    // /// Create and return switch camera button
+    // private lazy var switchCameraButton : UIButton! = {
+    //     let button = UIButton()
         
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "ic_switch_camera", in: Bundle(for: SwiftFlutterBarcodeScannerPlugin.self), compatibleWith: nil),for: .normal)
-        button.addTarget(self, action: #selector(BarcodeScannerViewController.switchCameraButtonClicked), for: .touchUpInside)
+    //     button.translatesAutoresizingMaskIntoConstraints = false
+    //     button.setImage(UIImage(named: "ic_switch_camera", in: Bundle(for: SwiftFlutterBarcodeScannerPlugin.self), compatibleWith: nil),for: .normal)
+    //     button.addTarget(self, action: #selector(BarcodeScannerViewController.switchCameraButtonClicked), for: .touchUpInside)
         
-        return button
-    }()
+    //     return button
+    // }()
     
     
-    /// Create and return cancel button
-    public lazy var cancelButton: UIButton! = {
-        let view = UIButton()
-        view.setTitle(SwiftFlutterBarcodeScannerPlugin.cancelButtonText, for: .normal)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.addTarget(self, action: #selector(BarcodeScannerViewController.cancelButtonClicked), for: .touchUpInside)
-        return view
-    }()
+    // /// Create and return cancel button
+    // public lazy var cancelButton: UIButton! = {
+    //     let view = UIButton()
+    //     view.setTitle(SwiftFlutterBarcodeScannerPlugin.cancelButtonText, for: .normal)
+    //     view.translatesAutoresizingMaskIntoConstraints = false
+    //     view.addTarget(self, action: #selector(BarcodeScannerViewController.cancelButtonClicked), for: .touchUpInside)
+    //     return view
+    // }()
     
     override public func viewDidLoad() {
         super.viewDidLoad()
