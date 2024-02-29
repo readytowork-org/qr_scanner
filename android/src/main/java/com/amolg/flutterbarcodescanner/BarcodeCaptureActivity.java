@@ -42,6 +42,7 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -84,6 +85,8 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
 
     private ImageView imgViewBarcodeCaptureUseFlash;
     private ImageView imgViewSwitchCamera;
+    private ImageButton backButton;
+
 
     public static int SCAN_MODE = SCAN_MODE_ENUM.QR.ordinal();
 
@@ -116,10 +119,10 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
             buttonText = "Cancel";
             Log.e("BCActivity:onCreate()", "onCreate: " + e.getLocalizedMessage());
         }
+            backButton = findViewById(R.id.btn_back);
+          backButton.setOnClickListener(this);
 
-
-
-        imgViewBarcodeCaptureUseFlash = findViewById(R.id.imgViewBarcodeCaptureUseFlash);
+          imgViewBarcodeCaptureUseFlash = findViewById(R.id.imgViewBarcodeCaptureUseFlash);
         imgViewBarcodeCaptureUseFlash.setOnClickListener(this);
         imgViewBarcodeCaptureUseFlash.setVisibility(FlutterBarcodeScannerPlugin.isShowFlashIcon ? View.VISIBLE : View.GONE);
 
@@ -409,7 +412,14 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
                 Toast.makeText(this, "Unable to turn on flash", Toast.LENGTH_SHORT).show();
                 Log.e("BarcodeCaptureActivity", "FlashOnFailure: " + e.getLocalizedMessage());
             }
-        }  else if (i == R.id.imgViewSwitchCamera) {
+        }else if (i == R.id.btn_back) {
+            Barcode barcode = new Barcode();
+            barcode.rawValue = "-1";
+            barcode.displayValue = "-1";
+            FlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode);
+            finish();
+        }
+        else if (i == R.id.imgViewSwitchCamera) {
             int currentFacing = mCameraSource.getCameraFacing();
             boolean autoFocus = mCameraSource.getFocusMode() != null;
             boolean useFlash = flashStatus == USE_FLASH.ON.ordinal();

@@ -8,6 +8,35 @@
     android:background="@android:color/white"
     android:keepScreenOn="true">
 
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00826C"
+      >
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#00826C"
+            >
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back_ios"/>
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:text="イベント参加"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_gravity="center" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
     <com.amolg.flutterbarcodescanner.camera.CameraSourcePreview
         android:id="@+id/preview"
         android:scaleType="fitCenter"
@@ -19,6 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#44000000" />
+
+
 
     </com.amolg.flutterbarcodescanner.camera.CameraSourcePreview>
 
