@@ -32,7 +32,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         eventChannel.setStreamHandler(instance)
     }
 
- func addNavigationBar() {
+     func addNavigationBar() {
     let statusBarHeight = UIApplication.shared.statusBarFrame.height
     let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: statusBarHeight))
     statusBar.backgroundColor = UIColor(red: 0, green: 130/255, blue: 108/255, alpha: 1.0) // #00826C
@@ -71,12 +71,6 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
     // Add the navigation bar to the view controller's view
     SwiftFlutterBarcodeScannerPlugin.viewController.view.addSubview(navigationBar)
 }
-    
-    @objc func backButtonTapped() {
-    SwiftFlutterBarcodeScannerPlugin.viewController.dismiss(animated: true, completion: nil)
-
-    }
-
     
     @objc func backButtonTapped() {
     SwiftFlutterBarcodeScannerPlugin.viewController.dismiss(animated: true, completion: nil)
@@ -179,6 +173,8 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         }else {
             showAlertDialog(title: "Unable to proceed", message: "Camera not available")
         }
+    addNavigationBar()
+        
     }
     
     public func userDidScanWith(barcode: String){
@@ -278,7 +274,6 @@ class BarcodeScannerViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.isOrientationPortrait = isLandscape
-        addNavigationBar()
         self.initUIComponents()
     }
     
