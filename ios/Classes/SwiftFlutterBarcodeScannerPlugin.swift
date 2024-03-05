@@ -263,10 +263,19 @@ class BarcodeScannerViewController: UIViewController {
     return navigationBar
 }()
 
- @objc func backButtonTapped() {
-    SwiftFlutterBarcodeScannerPlugin.viewController.dismiss(animated: true, completion: nil)
-
+@objc private func backButtonTapped() {
+    if SwiftFlutterBarcodeScannerPlugin.isContinuousScan {
+        self.dismiss(animated: true) {
+            SwiftFlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode: "-1")
+        }
+    } else {
+        if self.delegate != nil {
+            self.dismiss(animated: true) {
+                self.delegate?.userDidScanWith(barcode: "-1")
+            }
+        }
     }
+}
     // /// Create and return cancel button
     // public lazy var cancelButton: UIButton! = {
     //     let view = UIButton()
