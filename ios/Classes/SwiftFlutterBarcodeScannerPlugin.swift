@@ -397,13 +397,13 @@ class BarcodeScannerViewController: UIViewController {
         // Initialize QR Code Frame to highlight the QR code
         qrCodeFrameView = UIView()
         
-        qrCodeFrameView!.frame = CGRect(x: 0, y: 0, width: self.isOrientationPortrait ? (screenSize.width * 0.8) : (screenSize.height * 0.8), height: screenHeight)
+        qrCodeFrameView!.frame = CGRect(x: 0, y: CGFloat(44), width: self.isOrientationPortrait ? (screenSize.width * 0.8) : (screenSize.height * 0.8), height: screenHeight)
         
         
         if let qrCodeFrameView = qrCodeFrameView {
          self.view.addSubview(statusBar)
           self.view.addSubview(navigationBar)
-
+         
             self.view.addSubview(qrCodeFrameView)
             
             self.view.bringSubviewToFront(qrCodeFrameView)
@@ -425,10 +425,10 @@ class BarcodeScannerViewController: UIViewController {
     
     /// Apply constraints to ui components
     private func setConstraintsForControls() {
-        // self.view.addSubview(bottomView)
         // self.view.addSubview(cancelButton)
         // self.view.addSubview(flashIcon)
         // self.view.addSubview(switchCameraButton)
+
         
         // bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0).isActive = true
         // bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:0).isActive = true
