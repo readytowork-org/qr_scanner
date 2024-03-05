@@ -247,7 +247,7 @@ class BarcodeScannerViewController: UIViewController {
     let backButton = UIButton()
     backButton.setTitle("", for: .normal)
     backButton.setImage(UIImage(named:"ic_arrow_back_ios", in: Bundle(for: SwiftFlutterBarcodeScannerPlugin.self), compatibleWith: nil), for: .normal)
-    backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+    backButton.addTarget(self, action: #selector(BarcodeScannerViewController.backButtonTapped), for: .touchUpInside)
     backButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
     backButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
     let backButtonItem = UIBarButtonItem(customView: backButton)
@@ -425,20 +425,20 @@ class BarcodeScannerViewController: UIViewController {
     
     /// Apply constraints to ui components
     private func setConstraintsForControls() {
-        self.view.addSubview(bottomView)
+        // self.view.addSubview(bottomView)
         // self.view.addSubview(cancelButton)
-        self.view.addSubview(flashIcon)
+        // self.view.addSubview(flashIcon)
         // self.view.addSubview(switchCameraButton)
         
-        bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0).isActive = true
-        bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:0).isActive = true
-        bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:0).isActive = true
-        bottomView.heightAnchor.constraint(equalToConstant:self.isOrientationPortrait ? 100.0 : 70.0).isActive=true
+        // bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0).isActive = true
+        // bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:0).isActive = true
+        // bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:0).isActive = true
+        // bottomView.heightAnchor.constraint(equalToConstant:self.isOrientationPortrait ? 100.0 : 70.0).isActive=true
         
-        flashIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        flashIcon.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
-        flashIcon.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
-        flashIcon.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
+        // flashIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        // flashIcon.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
+        // flashIcon.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+        // flashIcon.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
         
         // cancelButton.translatesAutoresizingMaskIntoConstraints = false
         // cancelButton.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
