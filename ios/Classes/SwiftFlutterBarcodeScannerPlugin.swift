@@ -32,44 +32,49 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         eventChannel.setStreamHandler(instance)
     }
 
-  public func addNavigationBar(to viewController: UIViewController) {
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: statusBarHeight))
-        statusBar.backgroundColor = UIColor(red: 0, green: 130/255, blue: 108/255, alpha: 1.0) // #00826C
+ func addNavigationBar() {
+    let statusBarHeight = UIApplication.shared.statusBarFrame.height
+    let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: statusBarHeight))
+    statusBar.backgroundColor = UIColor(red: 0, green: 130/255, blue: 108/255, alpha: 1.0) // #00826C
 
-        // Add status bar to the window
-        UIApplication.shared.keyWindow?.addSubview(statusBar)
-        
-        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: statusBarHeight, width: UIScreen.main.bounds.width, height: 44))
-        navigationBar.barTintColor = UIColor(red: 0, green: 130/255, blue: 108/255, alpha: 1.0)
-        navigationBar.isTranslucent = false
-        
-        // Title label
-        let titleLabel = UILabel()
-        titleLabel.text = "イベント参加"
-        titleLabel.textColor = UIColor.white
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.sizeToFit()
-        
-        // Back button
-        let backButton = UIButton()
-        backButton.setTitle("", for: .normal)
-        backButton.setImage(UIImage(named: "ic_arrow_back_ios", in: Bundle(for: SwiftFlutterBarcodeScannerPlugin.self), compatibleWith: nil), for: .normal)
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        backButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        backButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
-        let backButtonItem = UIBarButtonItem(customView: backButton)
-        
-        // Create a navigation item and set its left bar button item
-        let navigationItem = UINavigationItem()
-        navigationItem.leftBarButtonItem = backButtonItem
-        navigationItem.titleView = titleLabel
-        
-        // Add the navigation item to the navigation bar
-        navigationBar.setItems([navigationItem], animated: false)
-        
-        // Add the navigation bar to the view controller's view
-        viewController.view.addSubview(navigationBar)
+    // Add status bar to the window
+    UIApplication.shared.keyWindow?.addSubview(statusBar)
+    // 
+    let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: statusBarHeight, width: UIScreen.main.bounds.width, height: 44))
+    navigationBar.barTintColor = UIColor(red: 0, green: 130/255, blue: 108/255, alpha: 1.0)
+    navigationBar.isTranslucent = false
+    
+    // Title label
+    let titleLabel = UILabel()
+    titleLabel.text = "イベント参加"
+    titleLabel.textColor = UIColor.white
+    titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+    titleLabel.sizeToFit()
+    
+    // Back button
+    let backButton = UIButton()
+   backButton.setTitle("",for:.normal)
+    backButton.setImage(UIImage(named:"ic_arrow_back_ios", in: Bundle(for: SwiftFlutterBarcodeScannerPlugin.self), compatibleWith: nil),for:.normal)
+    backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+    backButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+    backButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
+    let backButtonItem = UIBarButtonItem(customView: backButton)
+    
+    // Create a navigation item and set its left bar button item
+    let navigationItem = UINavigationItem()
+    navigationItem.leftBarButtonItem = backButtonItem
+    navigationItem.titleView = titleLabel
+    
+    // Add the navigation item to the navigation bar
+    navigationBar.setItems([navigationItem], animated: false)
+    
+    // Add the navigation bar to the view controller's view
+    SwiftFlutterBarcodeScannerPlugin.viewController.view.addSubview(navigationBar)
+}
+    
+    @objc func backButtonTapped() {
+    SwiftFlutterBarcodeScannerPlugin.viewController.dismiss(animated: true, completion: nil)
+
     }
 
     
@@ -273,6 +278,7 @@ class BarcodeScannerViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.isOrientationPortrait = isLandscape
+        addNavigationBar()
         self.initUIComponents()
     }
     
