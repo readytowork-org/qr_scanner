@@ -219,7 +219,7 @@ class BarcodeScannerViewController: UIViewController {
     // }()
     private lazy var statusBar: UIView = {
     let statusBarHeight = UIApplication.shared.statusBarFrame.height
-    let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: statusBarHeight))
+    let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: statusBarHeight+15))
     statusBar.backgroundColor = UIColor(red: 0, green: 130/255, blue: 108/255, alpha: 1.0) // #00826C
     
     // Add status bar to the window
@@ -232,7 +232,7 @@ class BarcodeScannerViewController: UIViewController {
     
     private lazy var navigationBar: UINavigationBar = {
     let statusBarHeight = UIApplication.shared.statusBarFrame.height
-    let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: statusBarHeight, width: UIScreen.main.bounds.width, height: 44))
+    let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: statusBarHeight+15, width: UIScreen.main.bounds.width, height: 44))
     navigationBar.barTintColor = UIColor(red: 0, green: 130/255, blue: 108/255, alpha: 1.0)
     navigationBar.isTranslucent = false
     
@@ -240,7 +240,9 @@ class BarcodeScannerViewController: UIViewController {
     let titleLabel = UILabel()
     titleLabel.text = "イベント参加"
     titleLabel.textColor = UIColor.white
-    titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+    titleLabel.font = UIFont(name: "BIZ UDPGothic", size: 19.0)
+    titleLabel.font = UIFont.boldSystemFont(ofSize: 19.0)     
+    titleLabel.textAlignment = .center
     titleLabel.sizeToFit()
     
     // Back button
