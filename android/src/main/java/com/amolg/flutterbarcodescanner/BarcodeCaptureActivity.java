@@ -56,6 +56,10 @@ import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import android.view.Window;
+
+import android.view.WindowManager;
+
 
 import java.io.IOException;
 
@@ -119,8 +123,15 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
             buttonText = "Cancel";
             Log.e("BCActivity:onCreate()", "onCreate: " + e.getLocalizedMessage());
         }
+
+            // Set status bar color
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(0xFF00826C); // Replace your_status_bar_color with your desired color
+            }
             backButton = findViewById(R.id.btn_back);
-          backButton.setOnClickListener(this);
+           backButton.setOnClickListener(this);
 
           imgViewBarcodeCaptureUseFlash = findViewById(R.id.imgViewBarcodeCaptureUseFlash);
         imgViewBarcodeCaptureUseFlash.setOnClickListener(this);
