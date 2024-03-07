@@ -187,6 +187,16 @@ class BarcodeScannerViewController: UIViewController {
         return self.isOrientationPortrait ? (screenSize.height - (screenSize.width*0.8))/2 :
             (screenSize.height - (screenSize.height*0.8))/2
     }()
+
+
+   
+  
+    private lazy var yCor1: CGFloat! = {
+         print(screenSize.height/180 )
+        return self.isOrientationPortrait ? (screenSize.height - (screenSize.height/4.68) - (screenSize.width*0.8))/2 :
+            (screenSize.height - (screenSize.height*0.8))/2
+
+    }()
     //Bottom view
     private lazy var bottomView : UIView! = {
         let view = UIView()
@@ -219,7 +229,7 @@ class BarcodeScannerViewController: UIViewController {
     // }()
     private lazy var statusBar: UIView = {
     let statusBarHeight = UIApplication.shared.statusBarFrame.height
-    let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: statusBarHeight+15))
+    let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: statusBarHeight))
     statusBar.backgroundColor = UIColor(red: 0, green: 130/255, blue: 108/255, alpha: 1.0) // #00826C
     
     // Add status bar to the window
@@ -232,7 +242,7 @@ class BarcodeScannerViewController: UIViewController {
     
     private lazy var navigationBar: UINavigationBar = {
     let statusBarHeight = UIApplication.shared.statusBarFrame.height
-    let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: statusBarHeight+15, width: UIScreen.main.bounds.width, height: 44))
+    let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: statusBarHeight, width: UIScreen.main.bounds.width, height: 44))
     navigationBar.barTintColor = UIColor(red: 0, green: 130/255, blue: 108/255, alpha: 1.0)
     navigationBar.isTranslucent = false
     
@@ -370,7 +380,7 @@ class BarcodeScannerViewController: UIViewController {
         //    func drawUIOverlays(){
         let overlayPath = UIBezierPath(rect: view.bounds)
         
-        let transparentPath = UIBezierPath(rect: CGRect(x: xCor, y: yCor, width: self.isOrientationPortrait ? (screenSize.width*0.8) : (screenSize.height*0.8), height: screenHeight))
+        let transparentPath = UIBezierPath(rect: CGRect(x: xCor, y: yCor1, width: self.isOrientationPortrait ? (screenSize.width*0.8) : (screenSize.height*0.8), height: screenHeight))
         
         overlayPath.append(transparentPath)
         overlayPath.usesEvenOddFillRule = true
@@ -389,7 +399,7 @@ class BarcodeScannerViewController: UIViewController {
         // Start video capture.
         captureSession.startRunning()
         
-        let scanRect = CGRect(x: xCor, y: yCor, width: self.isOrientationPortrait ? (screenSize.width*0.8) : (screenSize.height*0.8), height: screenHeight)
+       let scanRect = CGRect(x: xCor, y: yCor, width: self.isOrientationPortrait ? (screenSize.width*0.8) : (screenSize.height*0.8), height: screenHeight)
         
         
         let rectOfInterest = videoPreviewLayer?.metadataOutputRectConverted(fromLayerRect: scanRect)
@@ -399,13 +409,15 @@ class BarcodeScannerViewController: UIViewController {
         // Initialize QR Code Frame to highlight the QR code
         qrCodeFrameView = UIView()
         
-        qrCodeFrameView!.frame = CGRect(x: 0, y: CGFloat(105), width: self.isOrientationPortrait ? (screenSize.width * 0.8) : (screenSize.height * 0.8), height: screenHeight)
+        qrCodeFrameView!.frame = CGRect(x: 0, y: CGFloat(90), width: self.isOrientationPortrait ? (screenSize.width * 0.8) : (screenSize.height * 0.8), height: screenHeight)
         
         
         if let qrCodeFrameView = qrCodeFrameView {
+                
             self.view.addSubview(statusBar)
-             self.view.addSubview(navigationBar)
+            self.view.addSubview(navigationBar)
             self.view.addSubview(qrCodeFrameView)
+    
             
             self.view.bringSubviewToFront(qrCodeFrameView)
             qrCodeFrameView.layer.insertSublayer(fillLayer, below: videoPreviewLayer!)
