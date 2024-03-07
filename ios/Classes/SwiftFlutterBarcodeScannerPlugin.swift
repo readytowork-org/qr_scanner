@@ -12,6 +12,8 @@ enum ScanMode:Int{
     }
 }
 
+
+
 public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarcodeDelegate,FlutterStreamHandler {
     
     public static var viewController = UIViewController()
@@ -193,7 +195,7 @@ class BarcodeScannerViewController: UIViewController {
   
     private lazy var yCor1: CGFloat! = {
          print(screenSize.height/180 )
-        return self.isOrientationPortrait ? (screenSize.height - (screenSize.height/4.68) - (screenSize.width*0.8))/2 :
+        return self.isOrientationPortrait ? (screenSize.height - (screenSize.height/4.019) - (screenSize.width*0.8))/2 :
             (screenSize.height - (screenSize.height*0.8))/2
 
     }()
@@ -229,7 +231,7 @@ class BarcodeScannerViewController: UIViewController {
     // }()
     private lazy var statusBar: UIView = {
     let statusBarHeight = UIApplication.shared.statusBarFrame.height
-    let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: statusBarHeight))
+    let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: statusBarHeight+15))
     statusBar.backgroundColor = UIColor(red: 0, green: 130/255, blue: 108/255, alpha: 1.0) // #00826C
     
     // Add status bar to the window
@@ -239,35 +241,43 @@ class BarcodeScannerViewController: UIViewController {
     
     return statusBar
 }()
+
+
     
     private lazy var navigationBar: UINavigationBar = {
     let statusBarHeight = UIApplication.shared.statusBarFrame.height
-    let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: statusBarHeight, width: UIScreen.main.bounds.width, height: 44))
+    let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: statusBarHeight+15, width: UIScreen.main.bounds.width, height: 44))
     navigationBar.barTintColor = UIColor(red: 0, green: 130/255, blue: 108/255, alpha: 1.0)
     navigationBar.isTranslucent = false
     
-    // Title label
-    let titleLabel = UILabel()
+
+    let titleLabel = UITextView()
     titleLabel.text = "イベント参加"
     titleLabel.textColor = UIColor.white
     titleLabel.font = UIFont(name: "BIZ UDPGothic", size: 19.0)
-    titleLabel.font = UIFont.boldSystemFont(ofSize: 19.0)     
+    titleLabel.font = UIFont.boldSystemFont(ofSize: 19.0)
+    titleLabel.backgroundColor = UIColor.clear // Set background color as needed
+    titleLabel.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0)
     titleLabel.textAlignment = .center
     titleLabel.sizeToFit()
+
     
     // Back button
     let backButton = UIButton()
-    backButton.setTitle("", for: .normal)
     backButton.setImage(UIImage(named:"ic_arrow_back_ios", in: Bundle(for: SwiftFlutterBarcodeScannerPlugin.self), compatibleWith: nil), for: .normal)
+
     backButton.addTarget(self, action: #selector(BarcodeScannerViewController.backButtonTapped), for: .touchUpInside)
     backButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-    backButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
+    backButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 15, right: 0)
+    backButton.tintColor = UIColor.red
     let backButtonItem = UIBarButtonItem(customView: backButton)
     
     // Create a navigation item and set its left bar button item
     let navigationItem = UINavigationItem()
     navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     navigationItem.titleView = titleLabel
+    
+    
     
     // Add the navigation item to the navigation bar
     navigationBar.setItems([navigationItem], animated: false)
@@ -296,6 +306,9 @@ class BarcodeScannerViewController: UIViewController {
     //     view.addTarget(self, action: #selector(BarcodeScannerViewController.cancelButtonClicked), for: .touchUpInside)
     //     return view
     // }()
+
+
+
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -409,7 +422,7 @@ class BarcodeScannerViewController: UIViewController {
         // Initialize QR Code Frame to highlight the QR code
         qrCodeFrameView = UIView()
         
-        qrCodeFrameView!.frame = CGRect(x: 0, y: CGFloat(90), width: self.isOrientationPortrait ? (screenSize.width * 0.8) : (screenSize.height * 0.8), height: screenHeight)
+        qrCodeFrameView!.frame = CGRect(x: 0, y: CGFloat(105), width: self.isOrientationPortrait ? (screenSize.width * 0.8) : (screenSize.height * 0.8), height: screenHeight)
         
         
         if let qrCodeFrameView = qrCodeFrameView {
@@ -417,6 +430,7 @@ class BarcodeScannerViewController: UIViewController {
             self.view.addSubview(statusBar)
             self.view.addSubview(navigationBar)
             self.view.addSubview(qrCodeFrameView)
+            
     
             
             self.view.bringSubviewToFront(qrCodeFrameView)
