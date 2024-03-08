@@ -195,7 +195,7 @@ class BarcodeScannerViewController: UIViewController {
   
     private lazy var yCor1: CGFloat! = {
          print(screenSize.height/180 )
-        return self.isOrientationPortrait ? (screenSize.height - (screenSize.height/4.019) - (screenSize.width*0.8))/2 :
+        return self.isOrientationPortrait ? (screenSize.height - 210 - (screenSize.width*0.8))/2 :
             (screenSize.height - (screenSize.height*0.8))/2
 
     }()
