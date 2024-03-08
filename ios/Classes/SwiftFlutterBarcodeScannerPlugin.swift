@@ -402,6 +402,8 @@ class BarcodeScannerViewController: UIViewController {
         fillLayer.path = overlayPath.cgPath
         fillLayer.fillRule = CAShapeLayerFillRule.evenOdd
         fillLayer.fillColor = UIColor(red: 120, green: 120, blue: 0, alpha: 0.5).cgColor
+        fillLayer.strokeColor = UIColor.green.cgColor
+        fillLayer.lineWidth = 5.0
         
         videoPreviewLayer?.layoutSublayers()
         videoPreviewLayer?.layoutIfNeeded()
