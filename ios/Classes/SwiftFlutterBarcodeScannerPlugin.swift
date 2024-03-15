@@ -268,8 +268,9 @@ class BarcodeScannerViewController: UIViewController {
 
     backButton.addTarget(self, action: #selector(BarcodeScannerViewController.backButtonTapped), for: .touchUpInside)
     backButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-    backButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 15, right: 0)
+    backButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 20, right: 0)
     backButton.tintColor = UIColor.red
+    backButton.transform = CGAffineTransform(scaleX: 0.65, y: 0.65)
     let backButtonItem = UIBarButtonItem(customView: backButton)
     
     // Create a navigation item and set its left bar button item
